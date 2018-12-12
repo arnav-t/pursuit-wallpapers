@@ -1,0 +1,42 @@
+/*
+===============================
+MAIN DEFINITIONS
+===============================
+*/
+
+body {
+	background: linear-gradient(to right, #cc8629, #d24921); 
+}
+
+#main-panel {
+	margin: auto;
+	width: 60%;
+	display: flex;
+	flex-flow: column;
+}
+
+#canvas {
+	border: 3px solid orangered;
+	width: 100%;
+}
+
+#menu {
+	margin: 0px -20px;
+}
+
+#color-menu {
+	display: flex;
+	justify-content: space-around;
+}
+
+/*
+===============================
+MOBILE
+===============================
+*/
+
+@media (max-width: 600px) {
+	#main-panel {
+		width: 100%;
+	}		
+}

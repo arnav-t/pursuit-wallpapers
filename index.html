@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- BOOTSTRAP -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<!-- END BOOTSTRAP -->
+
+		<!-- JQUERY -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<!-- END JQUERY -->
+
+		<!-- MATH.JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.4.0/math.js"></script>
+		<!-- END MATH.JS -->
+
+		<script src="static/scripts/main.js" async defer></script>
+		<link rel="stylesheet" href="static/styles/main.css">
+	</head>
+	<body>
+		<h1 class="display-2 text-white mb-2" style="text-align: center">Pursuit Wallpapers</h1>
+		<div class="card" id="main-panel">
+			<div class="card-body form-group">
+				<canvas id="canvas" width="1920px" height="1080px"></canvas>
+				<div class="card-footer" id="menu">
+					<div class="form-group">
+						<label for="res">Resolution</label>
+						<select class="form-control" id="res">
+							<option value="1280,720">1280 x 720</option>
+							<option value="1920,1080" selected="selected">1920 x 1080</option>
+							<option value="2048,1080">2048 x 1080</option>
+							<option value="2560,1440">2560 x 1440</option>
+							<option value="3840,2160">3840 x 2160</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="comp">Complexity (<span id="comp-label">1000</span>)</label>
+						<input class="custom-range" id="comp" type="range" min="10" max="2000" value="1000" step="10" onchange="updateLabel()">
+					</div>
+					<div class="form-group">
+						<label for="wid">Trace Width (<span id="wid-label">1</span>)</label>
+						<input class="custom-range" id="wid" type="range" min="1" max="10" value="1" step="1" onchange="updateLabel()">
+					</div>
+					<div class="form-group" id="color-menu">
+						<div>
+							<label for="back">Background Color</label>
+							<input class="form-control" id="back" type="color" value="#333333">
+						</div>
+						<div>
+							<label for="col1">Color 1</label>
+							<input class="form-control" id="col1" type="color" value="#ccff00">
+						</div>
+						<div>
+							<label for="col2">Color 2</label>
+							<input class="form-control" id="col2" type="color" value="#ffdd00">
+						</div>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-info" id="gen-btn" style="margin: auto;" onclick="generate()">Generate</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
