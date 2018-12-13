@@ -7,7 +7,7 @@ var pur = [];
 var comp;
 var strkW;
 
-const velocity = 1/200;
+const velocity = 1/100;
 
 $(window).on('load', function() {
 	ctx.beginPath();
@@ -42,6 +42,8 @@ function aten(x) {
 
 function generate() {
 	$('#gen-btn').prop('disabled', true);
+	$('#gen-btn').addClass('btn-danger');
+	$('#gen-btn').removeClass('btn-info');
 
 	let res = $('#res').val();
 	w = parseInt( res.split(',')[0] );
@@ -69,7 +71,6 @@ function generate() {
 		pur.push( purs );
 	}
 
-	// let led = [];
 	let ledIndex = [];
 
 	for (let i=0; i < comp; ++i) {
@@ -86,9 +87,9 @@ function generate() {
 				dist = minDist;
 			}
 		}
-		// led.push( pur[minK] );
 		ledIndex.push( minK );
 	}
+	
 	
 	let colDiff = math.subtract(col2, col1);
 	let randCol = []
@@ -98,31 +99,56 @@ function generate() {
 
 	strkW = parseInt( $('#wid').val() );
 	var totalIters = 1000;
-	for (let j=0; j < totalIters; ++j) {
-		let iters = j*1.0/totalIters;
-		let ledUpdated = [];
-		ledUpdated.length = 0;
-		for (let i=0; i < comp; ++i) {
-			ledUpdated.push( pur[ ledIndex[i] ] );
-		}
-		
-		let dest = math.subtract(ledUpdated, pur);
-		// let trans = math.square( math.transpose( dest ) );
-		// let dist = math.sqrt( math.subtract(trans[0], trans[1]) );
-		// let norm = math.transpose( [dist, dist] );
-		// dest = math.add(math.dotMultiply(math.dotDivide(dest, norm), velocity), pur);
-		dest = math.add( math.dotMultiply(dest, velocity), pur);
-		
-		for (let i=0; i < comp; ++i) {
-			ctx.beginPath();
-			ctx.strokeStyle = `rgba( ${(col1[0] + iters*colDiff[0] + randCol[i])}, ${(col1[1] + iters*colDiff[1] + randCol[i])}, ${(col1[2] + iters*colDiff[2] + randCol[i])}, ${aten(iters)} )`;			
-			ctx.moveTo(pur[i][0], pur[i][1]);
-			ctx.lineTo( dest[i][0], dest[i][1] ) ;	
-			ctx.lineWidth = strkW;
-			ctx.stroke();
-			ctx.closePath();
-		}
+	
+	doIteration(0, totalIters, ledIndex, colDiff, randCol, col1, col2);	
+}
 
-		pur = dest;
+function clip(x) {
+	if (x < 0) 
+		return 0;
+	else if(x >= 1) {
+		return 1;
+	}
+	else 
+		return x;
+}
+
+function doIteration(j, totalIters, ledIndex, colDiff, randCol, col1, col2) {
+	let iters = j*1.0/totalIters;
+	iters = clip( 2.5*iters );
+	let ledUpdated = [];
+	ledUpdated.length = 0;
+	for (let i=0; i < comp; ++i) {
+		ledUpdated.push( pur[ ledIndex[i] ] );
+	}
+
+	let dest = math.subtract(ledUpdated, pur);
+	// let trans = math.square( math.transpose( dest ) );
+	// let dist = math.sqrt( math.subtract(trans[0], trans[1]) );
+	// let norm = math.transpose( [dist, dist] );
+	// dest = math.add(math.dotMultiply(math.dotDivide(dest, norm), velocity), pur);
+	dest = math.add( math.dotMultiply(dest, velocity), pur);
+
+	for (let i=0; i < comp; ++i) {
+		ctx.beginPath();
+		ctx.strokeStyle = `rgba( ${(col1[0] + iters*colDiff[0] + randCol[i])}, ${(col1[1] + iters*colDiff[1] + randCol[i])}, ${(col1[2] + iters*colDiff[2] + randCol[i])}, ${aten(iters)} )`;			
+		ctx.moveTo(pur[i][0], pur[i][1]);
+		ctx.lineTo( dest[i][0], dest[i][1] ) ;	
+		ctx.lineWidth = strkW;
+		ctx.stroke();
+		ctx.closePath();
+	}
+
+	pur = dest;
+
+	j++;
+	if(j < totalIters) {
+		setTimeout(() => {
+			doIteration(j, totalIters, ledIndex, colDiff, randCol, col1, col2);
+		}, 1);      
+	}
+	else {
+		$('#gen-btn').addClass('btn-info');
+		$('#gen-btn').removeClass('btn-danger');
 	}
 }
