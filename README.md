@@ -1,4 +1,4 @@
-# Pursuit Wallpapers
+# Pursuit Wallpapers [![HitCount](http://hits.dwyl.io/arnav-t/pursuit-wallpapers.svg)](http://hits.dwyl.io/arnav-t/pursuit-wallpapers)
 ## Web app to generate wallpapers of pursuit curves 
 PW simulates curves of pursuit to generate wallpapers of intricate and colorful patterns.      
      
