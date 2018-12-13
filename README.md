@@ -10,7 +10,7 @@ Generating wallpapers with high complexity may take a few seconds.
 ### Examples   
 ![Screenshot](https://i.imgur.com/0nFWgyn.png "Screenshot")
 ![Screenshot](https://i.imgur.com/axa0MRg.jpg "Screenshot")
-![Screenshot](https://i.imgur.com/lwyx2A0.jpg "Screenshot")
+![Screenshot](https://i.imgur.com/NYMvzJj.jpg "Screenshot")
 ![Screenshot](https://i.imgur.com/5OdFh5G.jpg "Screenshot")
 ![Screenshot](https://i.imgur.com/xzbIT8W.jpg "Screenshot")      
 
