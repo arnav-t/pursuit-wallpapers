@@ -63,6 +63,7 @@ function generate() {
 
 	comp = parseInt( $('#comp').val() );
 
+	pur = [];
 	for (let i=0; i < comp; ++i) {
 		purs = [
 			( Math.random()*w ),
@@ -150,5 +151,6 @@ function doIteration(j, totalIters, ledIndex, colDiff, randCol, col1, col2) {
 	else {
 		$('#gen-btn').addClass('btn-info');
 		$('#gen-btn').removeClass('btn-danger');
+		$('#gen-btn').prop('disabled', false);
 	}
 }
